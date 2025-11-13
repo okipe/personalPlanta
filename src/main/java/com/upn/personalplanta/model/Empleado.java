@@ -37,6 +37,6 @@ public class Empleado {
 
     @Column(name = "fecha_ingreso", nullable = false)
     @Temporal(value = TemporalType.DATE)
-    @DateTimeFormat(pattern = "dd/MM/yyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaIngreso;
 }
