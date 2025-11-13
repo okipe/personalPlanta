@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Actualizar Capacitación</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container">
+  <h1> Administración de Capacitación</h1>
+  <hr>
+  <h2>Actualizar Capacitación</h2>
+
+  <form  action="#"  th:action="@{/guardarCapacitacion}" th:object="${capacitacion}" method="post">
+
+    <input type="hidden" th:field="*{id}">
+    <label>Descripción:</label>
+    <input type="text" th:field="*{descripcion}" placeholder="Descripción capacitación" class="form-control mb-4 col-4">
+    <label>Fecha Inicio:</label>
+    <input type="date" th:field="*{fechaInicio}" placeholder="Fecha de  inicio" class="form-control mb-4 col-4">
+    <label>Fecha Fin:</label>
+    <input type="date" th:field="*{fechaFin}" placeholder="Fecha de fin" class="form-control mb-4 col-4">
+    <label>Estado:</label>
+    <select th:field="*{estado}" class="form-control mb-4 col-4">
+      <option th:value="'0'" th:text="Programado"></option>
+      <option th:value="'1'" th:text="Realizado"></option>
+      <option th:value="'2'" th:text="Postergado"></option>
+    </select>
+
+    <label>Núm. Créditos:</label>
+    <input type="text" th:field="*{creditos}" placeholder="# de Créditos" class="form-control mb-4 col-4">
+
+    <button type="submit" class="btn btn-info col-2">Guardar</button>
+
+  </form>
+
+
+
+</div>
+
+</body>
+</html>

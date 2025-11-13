@@ -9,15 +9,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-
-public class EmpleadoServiceImpl implements EmpleadoService {
-
+public class EmpleadoServiceImpl implements  EmpleadoService{
 
     private final EmpleadoRepository empleadoRepository;
 
+
     @Override
     public List<Empleado> listarEmpleados() {
-        return empleadoRepository.findAll();
+        return  empleadoRepository.findAll();
     }
 
     @Override
@@ -28,11 +27,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     @Override
     public Empleado obtenerEmpleadoPorId(Integer id) {
         return empleadoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Empleado no encontrado por id: " + id));
+                .orElseThrow(()-> new RuntimeException(("Empleado no encontrado con id:"+id)));
     }
 
     @Override
-    public void eliminarEmpleadoPorId(Integer id) {
+    public void eliminarEmpleado(Integer id) {
         empleadoRepository.deleteById(id);
     }
 }
