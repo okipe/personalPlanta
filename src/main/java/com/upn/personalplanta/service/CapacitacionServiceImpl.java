@@ -5,6 +5,7 @@ import com.upn.personalplanta.repository.CapacitacionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -32,6 +33,11 @@ public class CapacitacionServiceImpl implements CapacitacionService {
     @Override
     public void eliminarCapacitacion(Integer id) {
         capacitacionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Capacitacion> listarCapacitacionesPorFechaInicio(Date fechaIniIni, Date fechaIniFin) {
+        return capacitacionRepository.findCapacitacionPorFechaInicio(fechaIniIni, fechaIniFin);
     }
 
 

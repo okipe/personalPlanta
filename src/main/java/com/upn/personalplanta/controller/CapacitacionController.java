@@ -3,9 +3,13 @@ package com.upn.personalplanta.controller;
 import com.upn.personalplanta.model.Capacitacion;
 import com.upn.personalplanta.service.CapacitacionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
+import java.util.List;
 
 
 @Controller
@@ -46,6 +50,18 @@ public class CapacitacionController {
         return "redirect:/capacitaciones";
     }
 
+    @GetMapping("/inicioBusqueda")
+    public String verPaginaInicioBusqueda(Model model){
+        return "capacitaciones/buscarCapacitacion";
+    }
 
-
+    @GetMapping("/busquedaCapacitacion")
+    public String BusquedaCapacitacion(Model model, @RequestParam("fechaIniIni")@DateTimeFormat(pattern = "yyy-MM-dd") Date fechaIniIni,
+                                       @RequestParam("fechaIniFin")@DateTimeFormat(pattern = "yyy-MM-dd") Date fechaIniFin){
+        List<Capacitacion> lista = capacitacionService.listarCapacitacionesPorFechaInicio(fechaIniIni, fechaIniFin);
+        model.addAttribute("listaCapacitaciones", lista);
+        model.addAttribute("fechaIniIni",lista);
+        model.addAttribute("fechaIniFin",lista);
+        return "capacitaciones/buscarCapacitacion";
+    }
 }

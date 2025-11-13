@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="tb_capacitacion")
@@ -38,6 +39,8 @@ public class Capacitacion {
     @Column(name = "creditos")
     private int creditos;
 
+    @ManyToMany(mappedBy = "capacitaciones")
+    private Set<Empleado> empleados;
 
     public String getEstadoDescripcion() {
         return Estado.values()[estado].getDesEstado();

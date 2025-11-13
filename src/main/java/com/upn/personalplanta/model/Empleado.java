@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="tb_empleado")
@@ -40,4 +41,12 @@ public class Empleado {
     @Temporal(value= TemporalType.DATE)
     @DateTimeFormat(pattern = "YYYY-MM-dd")
     private Date fechaIngreso;
+
+    @ManyToMany()
+    @JoinTable(
+            name = "tb_emp_capa",
+            joinColumns = @JoinColumn(name = "id_empleado"),
+            inverseJoinColumns = @JoinColumn (name = "id_capacitacion")
+    )
+    private Set<Capacitacion> capacitaciones;
 }
