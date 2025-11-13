@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administracion de Empleados</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="container my-2">
+    <h1>Listado de Empleados</h1>
+    <a th:href="@{/nuevoEmpleado}"  class="btn btn-primary btn-sm mb-3"> Agregar Empleado </a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Nombres</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+            <th>Dirección</th>
+            <th>Salario</th>
+            <th>Fecha de Ingreso</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empleado: ${listaEmpleados}">
+            <td th:text="${empleado.getNombre()}" ></td>
+            <td th:text="${empleado.getApellidoPaterno()}" ></td>
+            <td th:text="${empleado.getApellidoMaterno()}" ></td>
+            <td th:text="${empleado.getDireccion()}" ></td>
+            <td th:text="${empleado.getSalario()}" ></td>
+            <td th:text="${empleado.getFechaIngreso()}" ></td>
+            <td>
+                <a th:href="@{/actualizarEmpleado/{id}(id=${empleado.id})}" class="btn btn-primary"> Actualizar </a>
+                <a th:href="@{/eliminarEmpleado/{id}(id=${empleado.id})}" class="btn btn-danger"> Eliminar </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
