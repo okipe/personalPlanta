@@ -29,14 +29,14 @@ public class VacacionController {
     @GetMapping("/nuevaVacacion")
     public String mostrarFormularioNuevaVacacion(Model model) {
         model.addAttribute("vacacion", new Vacacion());
-        model.addAttribute("listarEmpleado", empleadoService.listarEmpleados());
+        model.addAttribute("listaEmpleados", empleadoService.listarEmpleados());
         return "vacaciones/nuevaVacacion";
     }
 
     @GetMapping("/actualizarVacacion/{id}")
     public String mostrarFormularioActualizarVacacion(@PathVariable Integer id, Model model) {
         model.addAttribute("vacacion", vacacionService.obtenerVacacionPorId(id));
-        model.addAttribute("listaEmpleado", empleadoService.listarEmpleados());
+        model.addAttribute("listaEmpleados", empleadoService.listarEmpleados());
         return "vacaciones/actualizarVacacion";
     }
 
