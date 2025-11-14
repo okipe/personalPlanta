@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Capacitación Detalle</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+
+    <h1>Capacitación:
+        <label th:text="${capacitacion.getDescripcion()}" />
+    </h1>
+
+    <h3>Listado de Participantes </h3>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th> Código </th>
+            <th> Nombres </th>
+            <th> Apellido Paterno </th>
+            <th> Apellido Materno </th>
+            <th> Dirección </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="empleado: ${listaEmpleadoCapacitacion}">
+            <td th:text="${empleado.getId()}" ></td>
+            <td th:text="${empleado.getNombre()}" ></td>
+            <td th:text="${empleado.getApellidoPaterno()}" ></td>
+            <td th:text="${empleado.getApellidoMaterno()}" ></td>
+            <td th:text="${empleado.getDireccion()}" ></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/inicioBusqueda}"  class="btn btn-primary"> Ir a la Búsqueda de Capacitaciones</a>
+
+
+</div>
+
+</body>
+</html>

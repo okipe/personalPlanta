@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EmpleadoServiceImpl implements  EmpleadoService{
+public class EmpleadoServiceImpl implements EmpleadoService{
 
     private final EmpleadoRepository empleadoRepository;
 
@@ -33,5 +33,9 @@ public class EmpleadoServiceImpl implements  EmpleadoService{
     @Override
     public void eliminarEmpleado(Integer id) {
         empleadoRepository.deleteById(id);
+    }
+
+    public List<Empleado> listarEmpleadoPorCapacitacionId(Integer idCapacitacion) {
+        return empleadoRepository.findAllByCapacitacionesId(idCapacitacion);
     }
 }

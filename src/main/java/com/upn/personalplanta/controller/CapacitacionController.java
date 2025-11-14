@@ -1,8 +1,11 @@
 package com.upn.personalplanta.controller;
 
 import com.upn.personalplanta.model.Capacitacion;
+import com.upn.personalplanta.model.Empleado;
 import com.upn.personalplanta.service.CapacitacionService;
+import com.upn.personalplanta.service.EmpleadoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +16,17 @@ import java.util.List;
 
 
 @Controller
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CapacitacionController {
 
     private final CapacitacionService capacitacionService;
+    private final EmpleadoService empleadoService;
+
+    @Autowired
+    public CapacitacionController(CapacitacionService capacitacionService, EmpleadoService empleadoService) {
+        this.capacitacionService = capacitacionService;
+        this.empleadoService = empleadoService;
+    }
 
     @GetMapping("/capacitaciones")
     public String verPaginaInicioCapacitacion(Model model){
@@ -60,8 +70,17 @@ public class CapacitacionController {
                                        @RequestParam("fechaIniFin")@DateTimeFormat(pattern = "yyy-MM-dd") Date fechaIniFin){
         List<Capacitacion> lista = capacitacionService.listarCapacitacionesPorFechaInicio(fechaIniIni, fechaIniFin);
         model.addAttribute("listaCapacitaciones", lista);
-        model.addAttribute("fechaIniIni",lista);
-        model.addAttribute("fechaIniFin",lista);
+        model.addAttribute("fechaIniIni",fechaIniIni);
+        model.addAttribute("fechaIniFin",fechaIniFin);
         return "capacitaciones/buscarCapacitacion";
+    }
+
+    @GetMapping("/capacitacionDetalle/{id}")
+    public String CapacitacionDetalle(Model model, @PathVariable(value = "id")Integer id){
+        List<Empleado> listaEmpleadoCapacitacion = empleadoService.listarEmpleadoPorCapacitacionId(id);
+        Capacitacion capacitacion = capacitacionService.obtenerCapacitacionPorId(id);
+        model.addAttribute("listaEmpleadoCapacitacion", listaEmpleadoCapacitacion);
+        model.addAttribute("capacitacion", capacitacion);
+        return "capacitaciones/capacitacionDetalle";
     }
 }

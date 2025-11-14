@@ -11,4 +11,5 @@ public interface EmpleadoService {
     Empleado obtenerEmpleadoPorId(Integer id);
     void eliminarEmpleado(Integer id);
 
+    List<Empleado> listarEmpleadoPorCapacitacionId(Integer idCapacitacion);
 }
