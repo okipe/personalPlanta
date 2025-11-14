@@ -17,27 +17,26 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class VacacionController {
 
-    private final VacacionService vacacionRepository;
     private final EmpleadoService empleadoService;
     private final VacacionService vacacionService;
 
     @GetMapping("/vacaciones")
     public String listarVacaciones(Model model) {
-        model.addAttribute("listarVacaciones", vacacionService.listarVacaciones());
+        model.addAttribute("listaVacaciones", vacacionService.listarVacaciones());
         return "vacaciones/vacaciones";
     }
 
     @GetMapping("/nuevaVacacion")
     public String mostrarFormularioNuevaVacacion(Model model) {
         model.addAttribute("vacacion", new Vacacion());
-        model.addAttribute("listarEmpleado", vacacionService.listarVacaciones());
+        model.addAttribute("listarEmpleado", empleadoService.listarEmpleados());
         return "vacaciones/nuevaVacacion";
     }
 
     @GetMapping("/actualizarVacacion/{id}")
     public String mostrarFormularioActualizarVacacion(@PathVariable Integer id, Model model) {
         model.addAttribute("vacacion", vacacionService.obtenerVacacionPorId(id));
-        model.addAttribute("listarEmpleado", empleadoService.listarEmpleados());
+        model.addAttribute("listaEmpleado", empleadoService.listarEmpleados());
         return "vacaciones/actualizarVacacion";
     }
 

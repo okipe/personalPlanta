@@ -25,6 +25,11 @@ public class Vacacion {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fechaInicio;
 
+    @Column(name = "fecha_fin", nullable = false)
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaFin;
+
     @Column(name = "estado", nullable = false)
     private int estado;
 
