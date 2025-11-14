@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -49,4 +50,12 @@ public class Empleado {
             inverseJoinColumns = @JoinColumn (name = "id_capacitacion")
     )
     private Set<Capacitacion> capacitaciones;
+
+    // Relación One-to-Many
+    @OneToMany(mappedBy = "empleado", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Vacacion> vacaciones = new HashSet<>();
+
+    public String getNombreCompleto() {
+        return nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+    }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Búsqueda de Vacaciones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+    <h1>Búsqueda de Vacaciones</h1>
+    <br>
+
+    <form th:action="@{/buscarVacaciones/resultados}" method="get">
+        Fecha Inicio (Desde):
+        <input type="date" name="fechaInicio" th:value="${fechaInicio != null ? #dates.format(fechaInicio, 'yyyy-MM-dd') : ''}">
+        Fecha Inicio (Hasta):
+        <input type="date" name="fechaFin" th:value="${fechaFin != null ? #dates.format(fechaFin, 'yyyy-MM-dd') : ''}">
+        <button type="submit" class="btn btn-primary btn-sm mb-3">Buscar</button>
+    </form>
+    <br>
+
+    <div th:if="${listaVacaciones != null}">
+        <h3>Resultados</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Empleado</th>
+                <th>Periodo</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="vacacion : ${listaVacaciones}">
+                <td th:text="${vacacion.empleado.getNombreCompleto()}"></td>
+                <td th:text="${vacacion.periodo}"></td>
+                <td th:text="${#dates.format(vacacion.fechaInicio, 'dd/MM/yyyy')}"></td>
+                <td th:text="${#dates.format(vacacion.fechaFin, 'dd/MM/yyyy')}"></td>
+                <td th:text="${vacacion.getEstadoDescripcion()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr>
+    <a th:href="@{/vacaciones}">Volver al Listado Principal</a>
+</div>
+</body>
+</html>

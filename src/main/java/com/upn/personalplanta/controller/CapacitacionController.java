@@ -1,5 +1,7 @@
 package com.upn.personalplanta.controller;
 
+import com.upn.personalplanta.model.Vacacion;
+import com.upn.personalplanta.service.VacacionService;
 import com.upn.personalplanta.model.Capacitacion;
 import com.upn.personalplanta.model.Empleado;
 import com.upn.personalplanta.service.CapacitacionService;
@@ -83,4 +85,5 @@ public class CapacitacionController {
         model.addAttribute("capacitacion", capacitacion);
         return "capacitaciones/capacitacionDetalle";
     }
+
 }
